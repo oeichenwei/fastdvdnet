@@ -167,13 +167,13 @@ class FastDVDnet(nn.Module):
 		for _, m in enumerate(self.modules()):
 			self.weight_init(m)
 
-	def forward(self, x, noise_map):
+	def forward(self, x0, x1, x2, x3, x4, noise_map):
 		'''Args:
 			x: Tensor, [N, num_frames*C, H, W] in the [0., 1.] range
 			noise_map: Tensor [N, 1, H, W] in the [0., 1.] range
 		'''
 		# Unpack inputs
-		(x0, x1, x2, x3, x4) = tuple(x[:, 3*m:3*m+3, :, :] for m in range(self.num_input_frames))
+		#(x0, x1, x2, x3, x4) = tuple(x[:, 3*m:3*m+3, :, :] for m in range(self.num_input_frames))
 
 		# First stage
 		x20 = self.temp1(x0, x1, x2, noise_map)
